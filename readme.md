@@ -48,4 +48,4 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 
 Feito com ♥ by {  [Samuel][Samuel] }
 
--[Samuel]: https://github.com/SamuelSSan28
+[Samuel]: https://github.com/SamuelSSan28
