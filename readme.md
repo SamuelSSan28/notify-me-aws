@@ -28,7 +28,7 @@ Notify-me é um projeto desenvolvido com o propósito de acompanhar o lançament
 npm install 
 ```
 
-## 🎮 Usage
+## 🎮Teste Local
 
 ```
 npm run invoke-local
@@ -44,7 +44,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 - AWS Lambda
 - Amazon EventBridge
 - DynamoDB
-
+- Serverless Framework
 
 Feito com ♥ by {  [Samuel][Samuel] }
 
