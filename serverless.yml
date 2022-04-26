@@ -1,0 +1,42 @@
+
+service: lambda-environment
+
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, "qa"}
+  environment:
+    ${file(./config/env.${self:provider.stage}.json)}
+  iamRoleStatements:
+    ${file(./config/serverless/db.iam.role.yaml)}
+custom:
+  schedulerRate: rate(1 day)
+  enabled: false
+  tableName: ${self:provider.environment.DbTableName}
+  dbWriteCapacityUnits: ${self:provider.environment.DbWriteCapacityUnits}
+  dbReadCapacityUnits: ${self:provider.environment.DbReadCapacityUnits} 
+
+resources:
+  Resources:
+    ${file(./config/serverless/resources/dynamo.hero.table.yaml)}
+
+functions:
+  updates-manga-scheduler:
+    handler: handler.scheduler
+    events:
+      - schedule:
+          rate: ${self:custom.schedulerRate}
+          name: schedule-commit-message-${self:provider.stage}
+          description: get mangas updateds at day
+          enabled: ${self:custom.enabled}
+
+  create-mangas-api:
+    handler: handler.create_api
+    events:
+      - schedule:
+          rate: ${self:custom.schedulerRate}
+          name: schedule-commit-message-${self:provider.stage}
+          description: get mangas updateds at day
+          enabled: ${self:custom.enabled}
+

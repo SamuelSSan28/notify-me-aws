@@ -1,0 +1,21 @@
+{
+  "name": "lambda-environment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "invoke-local": "sls invoke local --stage qa -f updates-manga-scheduler "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.648.0",
+    "env-var": "^6.0.4",
+    "puppeteer": "^13.6.0",
+    "puppeteer-extra": "^3.2.3",
+    "puppeteer-extra-plugin-adblocker": "^2.12.0",
+    "puppeteer-extra-plugin-stealth": "^2.9.0"
+  }
+}
