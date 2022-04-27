@@ -12,10 +12,25 @@ class Handler {
     return dynamoDB.put(params).promise()
   }
 
+  static async update_manga_lastchapter(key, last_chapter) {
+    const params = {
+      TableName: settings.dbTableName,
+      Key: key,
+      UpdateExpression: "set last_chapter = :r",
+      ExpressionAttributeValues: {
+        ":r": last_chapter
+      },
+      ReturnValues: "UPDATED_NEW"
+    };
+
+    return dynamoDB.update(params).promise()
+  }
+
   static validator() {
     return Joi.object({
       manga: Joi.string().required(),
       url: Joi.string().required(),
+      url_global: Joi.string().required(),
       list_selector: Joi.string().required(),
       last_chapter: Joi.number().required(),
     })
@@ -46,11 +61,8 @@ class Handler {
       params.ExclusiveStartKey = items.LastEvaluatedKey;
     } while (typeof items.LastEvaluatedKey !== "undefined");
 
-    return {mangas:scanResults}
+    return { mangas: scanResults }
   }
-
-
-  static async update_manga() { }
 
   handlerSuccess(data) {
     const response = {
@@ -86,7 +98,10 @@ class Handler {
 
 const handler = new Handler()
 
-module.exports = decoratorValidator(
-  handler.main.bind(handler),
-  Handler.validator(),
-  'body')
+module.exports = {
+  Handler,
+  api:  decoratorValidator(
+    handler.main.bind(handler),
+    Handler.validator(),
+    'body')
+}

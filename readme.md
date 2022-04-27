@@ -31,8 +31,8 @@ npm install
 ## 🎮Teste Local
 
 ```
-npm run invoke-local
-
+npm run invoke-local-scheduler
+npm run invoke-local-api
 ```
 
 ## 🚀 Tecnologias

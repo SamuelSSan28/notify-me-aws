@@ -5,8 +5,8 @@
   "main": "handler.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "invoke-local": "sls invoke local --stage qa -f updates-manga-scheduler ",
-    "invoke-api": "sls invoke local -f create-mangas-api --path requests-mock/hero.insert.json"
+    "invoke-local-scheduler": "sls invoke local --stage qa -f updates-manga-scheduler ",
+    "invoke-local-api": "sls invoke local -f create-mangas-api --path requests-mock/hero.insert.json"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,7 @@
     "@hapi/joi": "^17.1.1",
     "aws-sdk": "^2.648.0",
     "env-var": "^6.0.4",
+    "node-telegram-bot-api": "^0.57.0",
     "puppeteer": "^13.6.0",
     "puppeteer-extra": "^3.2.3",
     "puppeteer-extra-plugin-adblocker": "^2.12.0",
