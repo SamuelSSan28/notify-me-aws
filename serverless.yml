@@ -11,8 +11,8 @@ provider:
   iamRoleStatements:
     ${file(./config/serverless/db.iam.role.yaml)}
 custom:
-  schedulerRate: rate(1 day)
-  enabled: false
+  schedulerRate: cron(50 23 * * ? *)
+  enabled: true
   tableName: ${self:provider.environment.DbTableName}
   dbWriteCapacityUnits: ${self:provider.environment.DbWriteCapacityUnits}
   dbReadCapacityUnits: ${self:provider.environment.DbReadCapacityUnits} 
